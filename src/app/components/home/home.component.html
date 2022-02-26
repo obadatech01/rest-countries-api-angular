@@ -1,0 +1,41 @@
+<app-header></app-header>
+<div class='countries light container'>
+
+  <div class='countries-header'>
+    <div class='search' [class]="customThemeService.theme">
+      <form>
+        <i class="fas fa-search"></i>
+        <input type='search' (keyup)="getSearchCountry()" (change)="changeSearch()" name="searchCountry" [(ngModel)]="searchCountry" placeholder='search for a country...' />
+      </form>
+    </div>
+    <div class='filter'>
+      <select [class]='customThemeService.theme' (change)="getAllCountries()" [(ngModel)]="selected">
+        <option value='All' defaultValue>All</option>
+        <option value='Asia'>Asia</option>
+        <option value='Africa'>Africa</option>
+        <option value='Europe'>Europe</option>
+        <option value='Americas'>Americas</option>
+        <option value='Oceania'>Oceania</option>
+      </select>
+    </div>
+  </div>
+  <div class='countries-body'>
+    <h2 *ngIf="countries.length === 0" style="margin: 50px auto;color: black;">Data mismatch value: <small style="color: red;">{{searchCountry}}</small></h2>
+    <a [routerLink]="data.name" *ngFor="let data of countries">
+      <div class='countries-body_items' [class]="customThemeService.theme">
+        <img [src]='data.flags.png' [alt]='data.name' />
+        <p>{{data.name}}</p>
+        <div>
+          <p>Population:&nbsp;</p><span>{{formatN.format(data.population)}}</span>
+        </div>
+        <div>
+          <p>Region:&nbsp;</p><span>{{data.region}}</span>
+        </div>
+        <div>
+          <p>Capital:&nbsp;</p><span>{{data.capital}}</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+<app-footer></app-footer>

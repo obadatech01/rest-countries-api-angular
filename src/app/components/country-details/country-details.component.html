@@ -1,0 +1,48 @@
+<app-header></app-header>
+<div class='container about'>
+  <a routerLink='/' [class]='customThemeService.theme'><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Back</a>
+  <div class='about-body'>
+    <img [src]='country[0].flags.png' [alt]='country[0].name' />
+    <div class='about-content'>
+      <p [class]='customThemeService.theme'>{{country[0].name}}</p>
+      <div [class]='customThemeService.theme'>
+        <div class='side-items'>
+          <div>
+            <p>Native Name:&nbsp;</p><span>{{country[0].nativeName}}</span>
+          </div>
+          <div>
+            <p>Population:&nbsp;</p><span>{{country[0].population}}</span>
+          </div>
+          <div>
+            <p>Region:&nbsp;</p><span>{{country[0].region}}</span>
+          </div>
+          <div>
+            <p>Sub Region:&nbsp;</p><span>{{country[0].subregion}}</span>
+          </div>
+          <div>
+            <p>Capital:&nbsp;</p><span>{{country[0].capital}}</span>
+          </div>
+        </div>
+        <div class='side-items'>
+          <div>
+            <p>Top Level Domain:&nbsp;</p><span>{{country[0].topLevelDomain[0]}}</span>
+          </div>
+          <div>
+            <p>Currencies:&nbsp;</p><span>{{country[0].currencies[0].name}}</span>
+          </div>
+          <div>
+            <p>Languages:&nbsp;</p><span>{{country[0].languages[0].name}}</span>
+          </div>
+          <div>
+            <p>Regional Blocs:&nbsp;</p><span><small style="font-size: 16px;" *ngFor="let blocs of country[0].regionalBlocs; index as i">{{blocs.name}} <span *ngIf="i < country[0].regionalBlocs.length-1"> ,&nbsp;</span></small></span>
+          </div>
+        </div>
+      </div>
+      <div [class]='customThemeService.theme'>
+        <p>Border Countries:&nbsp;</p>
+        <a [class]='customThemeService.theme' (click)="borderCountry(country)" *ngFor="let country of bordersCountry">{{country}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
